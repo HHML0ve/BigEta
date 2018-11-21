@@ -32,6 +32,17 @@ while running:
     foods.update()
     foods.draw(screen)
 
+    foods_eta_list = pygame.sprite.spritecollide(player, foods, True)
+    if len(foods_eta_list) > 0:
+        player.grow_up(True)
+
+    # 绘制得分
+    score_font = pygame.font.Font(None, 36)
+    score_text = score_font.render(str(player.weight), True, (128, 128, 128))
+    text_rect = score_text.get_rect()
+    text_rect.topleft = [10, 10]
+    screen.blit(score_text, text_rect)
+
     pygame.display.update()
 
     # 操纵玩家移动
@@ -44,3 +55,9 @@ while running:
         player.move_left()
     if key_pressed[pygame.K_d] or key_pressed[pygame.K_RIGHT]:
         player.move_right()
+
+font = pygame.font.Font(None, 48)
+text = font.render('Score: %s' % player.weight, True, (255, 0, 0))
+text_rect = text.get_rect()
+text_rect.centerx = screen.get_rect().centerx
+text_rect.centery = screen.get_rect().centery + 24
