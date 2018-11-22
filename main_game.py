@@ -15,6 +15,7 @@ foods = pygame.sprite.Group()
 
 clock = pygame.time.Clock()
 running = True
+full_screen = False
 
 while running:
     clock.tick(10)
@@ -55,6 +56,13 @@ while running:
         player.move_left()
     if key_pressed[pygame.K_d] or key_pressed[pygame.K_RIGHT]:
         player.move_right()
+
+    if key_pressed[pygame.K_f]:
+        full_screen = not full_screen
+        if full_screen:
+            screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT), pygame.FULLSCREEN | pygame.HWSURFACE)
+        else:
+            screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 font = pygame.font.Font(None, 48)
 text = font.render('Score: %s' % player.weight, True, (255, 0, 0))
