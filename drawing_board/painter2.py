@@ -24,7 +24,6 @@ class Brush(object):
         self.drawing = False
 
     def set_brush_style(self, style):
-        print("* set brush style to", style)
         self.style = style
 
     def get_brush_style(self):
@@ -38,7 +37,6 @@ class Brush(object):
             size = 0.5
         elif size > 32:
             size = 32
-        print("* set brush size to", size)
         self.size = size
         self.brush_now = self.brush.subsurface((0, 0), (size * 2, size * 2))
 
@@ -196,6 +194,7 @@ class Painter(object):
                     # <= 74, coarse judge here can save much time
                     if ((event.pos)[0] <= 74 and self.menu.click_button(event.pos)):
                         # if not click on a functional button, do drawing
+                        # 此处是点到了工具栏
                         pass
                     else:
                         self.brush.start_draw(event.pos)
